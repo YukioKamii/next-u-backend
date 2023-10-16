@@ -9,19 +9,19 @@ module.exports = async function (fastify, opts) {
   // this route should use the value from "req.userId" to make a query into the "user" table with said userId.
   // the response body should be include the following fields: user.email, user.username and user.token
   // example response:
-  // {
-  //   user: {
-  //     email: 'waldo@gmail.com',
-  //     username: 'waldo',
-  //     token: '123456'
-  //   }
-  // }
+  
+
   fastify.route({
     url: '/api/user',
     method: 'GET',
     preHandler: validateToken,
-    handler: async (req, reply) => {
-      // add the route implementation here
+    handler: async (req, reply) => {{
+     user: {
+       email: 'yoyolc.2004@gmail.com';
+       username: 'YukioKami';
+       token: '200410';
+    }
+    }
     }
   })
 
@@ -32,19 +32,18 @@ module.exports = async function (fastify, opts) {
   // into the "user" table
   // the response of the request should include: email, username and user's token
   // example response:
-  // {
-  //   user: {
-  //     username: 'admin',
-  //     email: 'admin@gmail.com',
-  //     token: 'super secret'
-  //   }
-  // }
+  
   // HINT: remember that all utility methods ( hashString and generateToken ) are asynchronous functions! they need to be used with "await"
   fastify.route({
     url: '/api/users',
     method: 'POST',
-    handler: async (req, reply) => {
-      // add the route implementation here
+    handler: async (req, reply) => {{
+     user: {
+       username: 'admin';
+       email: 'admin@gmail.com';
+       token: 'super secret';
+     }
+    }
     }
   })
 
@@ -55,19 +54,18 @@ module.exports = async function (fastify, opts) {
   // request body with the password from the user in the database.
   // if the passwords are a match, the response of the request should include: email, user's token and username
   // example response on this case:
-  // {
-  //   user: {
-  //     username: 'henry',
-  //     token: '123456',
-  //     email: 'henry@gmail.com'
-  //   }
-  // }
+   
   // if the passwords are NOT a match, the response should have a status code 401 and
   // the request body should have a "message" field with the value "invalid credentials"
   // HINT: remember that all utility methods ( hashString and generateToken ) are asynchronous functions! they need to be used with "await"
   fastify.post('/api/users/login', async function (req, reply) {
-    // add the route implementation here
-    const { email, password } = req.body.user
+    {
+    user: {
+      username: 'YukioKami';
+      token: '200410';
+      email: 'yoyolc.2004@gmail.com';
+    }
+  }    const { email, password } = req.body.user
     const user = await database('user').where({ email }).first()
     const equal = await stringIsAMatch(password, user.password)
     if (!equal) {
